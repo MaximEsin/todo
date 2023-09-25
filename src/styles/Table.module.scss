@@ -1,0 +1,28 @@
+.table {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: rgb(154, 109, 26);
+  border-radius: 2%;
+
+  &__name {
+    color: white;
+    margin: 0;
+    padding-top: 1%;
+    font-size: 20px;
+  }
+
+  &__list {
+    margin: 1% 2% 1%;
+    height: 72%;
+    overflow: auto;
+    margin-top: 1%;
+    background-color: rgb(69, 12, 12);
+    border-radius: 2%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+  }
+}
