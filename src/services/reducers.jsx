@@ -25,18 +25,39 @@ const loadState = () => {
 const persistedStore = loadState();
 
 const initialState = {
-  data: {},
+  queueData: [],
+  developmentData: [],
+  doneData: [],
 };
 
 export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "QUEUE_DATA": {
+      return {
+        ...state,
+        queueData: [
+          ...state.queueData,
+          {
+            name: action.name,
+            description: action.description,
+            finishDate: action.finishDate,
+            priority: action.priority,
+            comment: action.comment,
+          },
+        ],
+      };
+    }
     default:
       return state;
   }
 };
 
-const store = createStore(
+export const rootReducer = combineReducers({
   dataReducer,
+});
+
+const store = createStore(
+  rootReducer,
   persistedStore,
   composeWithDevTools(applyMiddleware(thunk))
 );

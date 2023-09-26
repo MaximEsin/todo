@@ -6,7 +6,7 @@ const Button = ({ text, setActive, type, switcher }) => {
     <button
       type={type}
       className={styles.button}
-      onClick={() => setActive(switcher)}
+      onClick={(e) => e.preventDefault(setActive(switcher))}
     >
       {text}
     </button>

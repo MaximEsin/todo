@@ -7,7 +7,12 @@ const Table = ({ name, setActive }) => {
     <section className={styles.table}>
       <p className={styles.table__name}>{name}</p>
       <div className={styles.table__list}></div>
-      <Button text="Add Task" setActive={setActive} switcher="true" />
+      <Button
+        type="button"
+        text="Add Task"
+        setActive={setActive}
+        switcher="true"
+      />
     </section>
   );
 };
