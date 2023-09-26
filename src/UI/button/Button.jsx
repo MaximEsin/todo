@@ -1,8 +1,16 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-const Button = ({ text }) => {
-  return <button className={styles.button}>{text}</button>;
+const Button = ({ text, setActive, type, switcher }) => {
+  return (
+    <button
+      type={type}
+      className={styles.button}
+      onClick={() => setActive(switcher)}
+    >
+      {text}
+    </button>
+  );
 };
 
 export default Button;
