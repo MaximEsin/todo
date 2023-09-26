@@ -5,7 +5,6 @@ import Board from "./components/Board";
 import Modal from "./components/Modal";
 import Form from "./components/Form";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 
 function App() {
   const [modalFormActive, setModalFormActive] = useState(false);

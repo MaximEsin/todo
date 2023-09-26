@@ -1,18 +1,12 @@
 import React from "react";
 import styles from "../styles/Table.module.scss";
-import Button from "../UI/button/Button";
 
-const Table = ({ name, setActive }) => {
+const Table = ({ name, children }) => {
   return (
     <section className={styles.table}>
       <p className={styles.table__name}>{name}</p>
       <div className={styles.table__list}></div>
-      <Button
-        type="button"
-        text="Add Task"
-        setActive={setActive}
-        switcher="true"
-      />
+      {children}
     </section>
   );
 };
