@@ -1,12 +1,23 @@
-import React, { useState } from "react";
-import styles from "../styles/Form.module.scss";
+import React, { useState, useEffect } from "react";
+import styles from "../styles/ModalContent.module.scss";
 import Button from "../UI/button/Button";
 import Input from "../UI/input/Input";
 import { storeQueueData } from "../services/actions";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import TextArea from "../UI/textarea/TextArea";
 
-const Form = ({ setActive }) => {
+const Form = ({ active }) => {
+  useEffect(() => {
+    setName("");
+    setDescription("");
+    setFinishDate("");
+    setPriority("");
+    setComment("");
+  }, [active]);
+
   const dispatch = useDispatch();
+  const { queueData } = useSelector((state) => state.dataReducer);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -23,7 +34,9 @@ const Form = ({ setActive }) => {
         )
       }
     >
-      <span className={styles.form__taskNumber}>Task number 1</span>
+      <span className={styles.form__taskNumber}>
+        Task number {queueData.length + 1}
+      </span>
       <div className={styles.form__listContainer}>
         <div className={styles.form__list}>
           <Input
@@ -59,13 +72,8 @@ const Form = ({ setActive }) => {
           />
         </div>
         <div className={styles.form__list}>
-          <Input
+          <TextArea
             placeholder="Description"
-            name="Description"
-            type="text"
-            requirement="true"
-            minLength="2"
-            maxLength="300"
             value={description || ""}
             onChange={(e) => setDescription(e.target.value)}
           />

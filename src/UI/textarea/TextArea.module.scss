@@ -1,0 +1,11 @@
+.textArea {
+  background-color: rgb(154, 109, 26);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: 90%;
+}
+
+.textArea::placeholder {
+  color: white;
+}

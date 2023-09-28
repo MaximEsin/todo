@@ -31,3 +31,28 @@
     padding-top: 10px;
   }
 }
+
+.item {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__name {
+    margin: 0 0 5px;
+    color: white;
+  }
+
+  &__data {
+    margin: 0 0 5px;
+    color: white;
+    width: 90%;
+    background-color: rgb(154, 109, 26);
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

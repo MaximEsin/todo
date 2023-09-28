@@ -16,3 +16,65 @@ export function storeQueueData(
     });
   };
 }
+
+export function getTask(
+  number,
+  name,
+  description,
+  finishDate,
+  comment,
+  date,
+  priority,
+  status,
+  day,
+  month,
+  year
+) {
+  return function (dispatch) {
+    dispatch({
+      type: "STORE_TASK",
+      number: number,
+      name: name,
+      description: description,
+      finishDate: finishDate,
+      comment: comment,
+      date: date,
+      priority: priority,
+      status: status,
+      day: day,
+      month: month,
+      year: year,
+    });
+  };
+}
+
+export function editTask(
+  number,
+  name,
+  description,
+  finishDate,
+  comment,
+  date,
+  priority,
+  status,
+  day,
+  month,
+  year
+) {
+  return function (dispatch) {
+    dispatch({
+      type: "EDIT_TASK",
+      number: number,
+      name: name,
+      description: description,
+      finishDate: finishDate,
+      comment: comment,
+      date: date,
+      priority: priority,
+      status: status,
+      day: day,
+      month: month,
+      year: year,
+    });
+  };
+}
