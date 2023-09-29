@@ -23,8 +23,6 @@ function App() {
 
   console.log(currentTask, queueData, developmentData, doneData);
 
-  localStorage.clear();
-
   return (
     <div className="App">
       <Header />

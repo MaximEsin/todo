@@ -26,3 +26,19 @@
     gap: 5%;
   }
 }
+
+@media all and (max-width: 825px) {
+  .table {
+    &__name {
+      font-size: 14px;
+    }
+  }
+}
+
+@media all and (max-width: 512px) {
+  .table {
+    &__name {
+      font-size: 10px;
+    }
+  }
+}

@@ -20,3 +20,29 @@
     justify-content: center;
   }
 }
+
+@media all and (max-width: 768px) {
+  .board {
+    width: 70%;
+    height: 80%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .board {
+    width: 80%;
+    height: 90%;
+  }
+}
+
+@media all and (max-width: 825px) {
+  .board__item {
+    font-size: 14px;
+  }
+}
+
+@media all and (max-width: 512px) {
+  .board__item {
+    font-size: 10px;
+  }
+}
