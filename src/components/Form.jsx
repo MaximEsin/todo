@@ -87,7 +87,7 @@ const Form = ({ active, closeModal }) => {
             type="text"
             requirement="true"
             minLength="2"
-            maxLength="300"
+            maxLength="30"
             value={comment || ""}
             onChange={(e) => setComment(e.target.value)}
           />

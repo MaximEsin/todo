@@ -59,7 +59,7 @@ export const dataReducer = (state = initialState, action) => {
             description: action.description,
             finishDate: action.finishDate,
             priority: action.priority,
-            comments: action.comment,
+            comments: [action.comments],
             date: `${day}-${month}-${year}`,
             day: day,
             month: month,
@@ -89,6 +89,7 @@ export const dataReducer = (state = initialState, action) => {
       };
     }
     case "EDIT_TASK": {
+      action.comments.push(action.newComment);
       const newTask = {
         number: action.number,
         name: action.name,

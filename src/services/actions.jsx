@@ -13,7 +13,7 @@ export function storeQueueData(
       description: description,
       finishDate: finishDate,
       priority: priority,
-      comment: comment,
+      comments: comment,
       subtasks: subtasks,
     });
   };
@@ -64,7 +64,8 @@ export function editTask(
   day,
   month,
   year,
-  subtasks
+  subtasks,
+  newComment
 ) {
   return function (dispatch) {
     dispatch({
@@ -81,6 +82,7 @@ export function editTask(
       month: month,
       year: year,
       subtasks: subtasks,
+      newComment: newComment,
     });
   };
 }

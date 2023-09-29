@@ -23,11 +23,14 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
         currentTask.day,
         currentTask.month,
         currentTask.year,
-        subtasks
+        subtasks,
+        newComment
       )
     );
     closeModal();
   };
+
+  console.log([currentTask.comments]);
 
   useEffect(() => {
     setName(currentTask.name);
@@ -35,6 +38,7 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
     setFinishDate(currentTask.finishDate);
     setPriority(currentTask.priority);
     setSubtasks(currentTask.subtasks);
+    setNewComment("");
   }, [active]);
 
   const [name, setName] = useState(currentTask.name);
@@ -42,6 +46,7 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
   const [finishDate, setFinishDate] = useState(currentTask.finishDate);
   const [priority, setPriority] = useState(currentTask.priority);
   const [subtasks, setSubtasks] = useState(currentTask.subtasks);
+  const [newComment, setNewComment] = useState("");
 
   const date = new Date();
 
@@ -137,9 +142,26 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <div className={styles.item__container}>
+          <div className={styles.item__containerComments}>
             <p className={styles.item__name}>Comments</p>
-            <p className={styles.item__data}>{currentTask.comments}</p>
+            {currentTask.comments.map((item, index) => {
+              return (
+                <p key={index} className={styles.item__data}>
+                  {item}
+                </p>
+              );
+            })}
+
+            <Input
+              placeholder="New Comment"
+              name="newComment"
+              type="number"
+              requirement="true"
+              minLength="1"
+              maxLength="20"
+              value={newComment || ""}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
           </div>
           <div className={styles.item__container}>
             <p className={styles.item__name}>Subtasks</p>

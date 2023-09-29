@@ -21,8 +21,6 @@ function App() {
     setModalTaskActive(false);
   };
 
-  console.log(currentTask, queueData, developmentData, doneData);
-
   return (
     <div className="App">
       <Header />
