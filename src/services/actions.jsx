@@ -78,3 +78,12 @@ export function editTask(
     });
   };
 }
+
+export function moveTask(number) {
+  return function (dispatch) {
+    dispatch({
+      type: "MOVE_TASK",
+      number,
+    });
+  };
+}

@@ -20,6 +20,7 @@ const loadState = () => {
   } catch (err) {
     return undefined;
   }
+  x;
 };
 
 const persistedStore = loadState();
@@ -104,6 +105,26 @@ export const dataReducer = (state = initialState, action) => {
         ],
       };
     }
+
+    case "MOVE_TASK": {
+      return {
+        ...state,
+        currentTask: {
+          number: action.number,
+          name: action.name,
+          description: action.description,
+          finishDate: action.finishDate,
+          comment: action.comment,
+          date: action.date,
+          priority: action.priority,
+          status: action.status,
+          day: action.day,
+          month: action.month,
+          year: action.year,
+        },
+      };
+    }
+
     default:
       return state;
   }

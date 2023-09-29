@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import TextArea from "../UI/textarea/TextArea";
 
-const Form = ({ active }) => {
+const Form = ({ active, closeModal }) => {
   useEffect(() => {
     setName("");
     setDescription("");
@@ -25,15 +25,13 @@ const Form = ({ active }) => {
   const [priority, setPriority] = useState("");
   const [comment, setComment] = useState("");
 
+  const closeFormSendData = () => {
+    dispatch(storeQueueData(name, description, finishDate, priority, comment));
+    closeModal();
+  };
+
   return (
-    <form
-      className={styles.form}
-      onSubmit={() =>
-        dispatch(
-          storeQueueData(name, description, finishDate, priority, comment)
-        )
-      }
-    >
+    <form className={styles.form}>
       <span className={styles.form__taskNumber}>
         Task number {queueData.length + 1}
       </span>
@@ -89,15 +87,7 @@ const Form = ({ active }) => {
           />
         </div>
       </div>
-      <Button
-        type="submit"
-        text="Create task"
-        setActive={() =>
-          dispatch(
-            storeQueueData(name, description, finishDate, priority, comment)
-          )
-        }
-      />
+      <Button type="submit" text="Create task" setActive={closeFormSendData} />
     </form>
   );
 };
