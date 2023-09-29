@@ -25,13 +25,14 @@ const Task = ({ data, setTaskActive, status }) => {
             data.name,
             data.description,
             data.finishDate,
-            data.comment,
+            data.comments,
             data.date,
             data.priority,
             status,
             data.day,
             data.month,
-            data.year
+            data.year,
+            data.subtasks
           )
         );
       }}

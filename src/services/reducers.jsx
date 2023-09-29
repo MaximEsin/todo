@@ -32,6 +32,7 @@ const initialState = {
     item: {
       name: "",
     },
+    comments: [],
   },
 };
 
@@ -48,7 +49,6 @@ export const dataReducer = (state = initialState, action) => {
       const day = date.getDate();
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
-
       return {
         ...state,
         queueData: [
@@ -59,11 +59,12 @@ export const dataReducer = (state = initialState, action) => {
             description: action.description,
             finishDate: action.finishDate,
             priority: action.priority,
-            comment: action.comment,
+            comments: action.comment,
             date: `${day}-${month}-${year}`,
             day: day,
             month: month,
             year: year,
+            subtasks: action.subtasks,
           },
         ],
       };
@@ -76,13 +77,14 @@ export const dataReducer = (state = initialState, action) => {
           name: action.name,
           description: action.description,
           finishDate: action.finishDate,
-          comment: action.comment,
+          comments: action.comments,
           date: action.date,
           priority: action.priority,
           status: action.status,
           day: action.day,
           month: action.month,
           year: action.year,
+          subtasks: action.subtasks,
         },
       };
     }
@@ -92,13 +94,14 @@ export const dataReducer = (state = initialState, action) => {
         name: action.name,
         description: action.description,
         finishDate: action.finishDate,
-        comments: action.comment,
+        comments: action.comments,
         date: action.date,
         priority: action.priority,
         status: action.status,
         day: action.day,
         month: action.month,
         year: action.year,
+        subtasks: action.subtasks,
       };
       if (action.status === "Queue") {
         return {
@@ -134,7 +137,6 @@ export const dataReducer = (state = initialState, action) => {
     }
 
     case "MOVE_TASK": {
-      console.log();
       if (action.name === "Development") {
         let itemToMove;
         const itemFromQueue = state.queueData.filter(

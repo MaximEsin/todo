@@ -26,9 +26,12 @@ const Form = ({ active, closeModal }) => {
   const [finishDate, setFinishDate] = useState("");
   const [priority, setPriority] = useState("");
   const [comment, setComment] = useState("");
+  const [subtasks, setSubtasks] = useState("");
 
   const closeFormSendData = () => {
-    dispatch(storeQueueData(name, description, finishDate, priority, comment));
+    dispatch(
+      storeQueueData(name, description, finishDate, priority, comment, subtasks)
+    );
     closeModal();
   };
 
@@ -87,6 +90,11 @@ const Form = ({ active, closeModal }) => {
             maxLength="300"
             value={comment || ""}
             onChange={(e) => setComment(e.target.value)}
+          />
+          <TextArea
+            placeholder="Subtasks"
+            value={subtasks || ""}
+            onChange={(e) => setSubtasks(e.target.value)}
           />
         </div>
       </div>

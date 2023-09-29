@@ -3,7 +3,8 @@ export function storeQueueData(
   description,
   finishDate,
   priority,
-  comment
+  comment,
+  subtasks
 ) {
   return function (dispatch) {
     dispatch({
@@ -13,6 +14,7 @@ export function storeQueueData(
       finishDate: finishDate,
       priority: priority,
       comment: comment,
+      subtasks: subtasks,
     });
   };
 }
@@ -22,13 +24,14 @@ export function getTask(
   name,
   description,
   finishDate,
-  comment,
+  comments,
   date,
   priority,
   status,
   day,
   month,
-  year
+  year,
+  subtasks
 ) {
   return function (dispatch) {
     dispatch({
@@ -37,13 +40,14 @@ export function getTask(
       name: name,
       description: description,
       finishDate: finishDate,
-      comment: comment,
+      comments: comments,
       date: date,
       priority: priority,
       status: status,
       day: day,
       month: month,
       year: year,
+      subtasks: subtasks,
     });
   };
 }
@@ -53,13 +57,14 @@ export function editTask(
   name,
   description,
   finishDate,
-  comment,
+  comments,
   date,
   priority,
   status,
   day,
   month,
-  year
+  year,
+  subtasks
 ) {
   return function (dispatch) {
     dispatch({
@@ -68,13 +73,14 @@ export function editTask(
       name: name,
       description: description,
       finishDate: finishDate,
-      comment: comment,
+      comments: comments,
       date: date,
       priority: priority,
       status: status,
       day: day,
       month: month,
       year: year,
+      subtasks: subtasks,
     });
   };
 }

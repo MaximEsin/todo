@@ -22,7 +22,8 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
         currentTask.status,
         currentTask.day,
         currentTask.month,
-        currentTask.year
+        currentTask.year,
+        subtasks
       )
     );
     closeModal();
@@ -33,14 +34,14 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
     setDescription(currentTask.description);
     setFinishDate(currentTask.finishDate);
     setPriority(currentTask.priority);
-    setComment(currentTask.comment);
+    setSubtasks(currentTask.subtasks);
   }, [active]);
 
   const [name, setName] = useState(currentTask.name);
   const [description, setDescription] = useState(currentTask.description);
   const [finishDate, setFinishDate] = useState(currentTask.finishDate);
   const [priority, setPriority] = useState(currentTask.priority);
-  const [comment, setComment] = useState(currentTask.comment);
+  const [subtasks, setSubtasks] = useState(currentTask.subtasks);
 
   const date = new Date();
 
@@ -138,15 +139,13 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
           </div>
           <div className={styles.item__container}>
             <p className={styles.item__name}>Comments</p>
-            <Input
-              placeholder="Commentary"
-              name="Comment"
-              type="text"
-              requirement="true"
-              minLength="2"
-              maxLength="300"
-              value={comment || ""}
-              onChange={(e) => setComment(e.target.value)}
+            <p className={styles.item__data}>{currentTask.comments}</p>
+          </div>
+          <div className={styles.item__container}>
+            <p className={styles.item__name}>Subtasks</p>
+            <TextArea
+              value={subtasks || ""}
+              onChange={(e) => setSubtasks(e.target.value)}
             />
           </div>
         </div>
