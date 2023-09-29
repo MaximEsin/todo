@@ -20,7 +20,6 @@ const loadState = () => {
   } catch (err) {
     return undefined;
   }
-  x;
 };
 
 const persistedStore = loadState();
@@ -39,7 +38,11 @@ const initialState = {
 export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
     case "QUEUE_DATA": {
-      const taskNumber = state.queueData.length + 1;
+      const taskNumber =
+        state.queueData.length +
+        1 +
+        state.developmentData.length +
+        state.doneData.length;
       const date = new Date();
 
       const day = date.getDate();
@@ -97,32 +100,157 @@ export const dataReducer = (state = initialState, action) => {
         month: action.month,
         year: action.year,
       };
-      return {
-        ...state,
-        queueData: [
-          ...state.queueData.filter((item) => item.number !== action.number),
-          newTask,
-        ],
-      };
+      if (action.status === "Queue") {
+        return {
+          ...state,
+          queueData: [
+            ...state.queueData.filter((item) => item.number !== action.number),
+            newTask,
+          ],
+        };
+      }
+
+      if (action.status === "Development") {
+        return {
+          ...state,
+          developmentData: [
+            ...state.developmentData.filter(
+              (item) => item.number !== action.number
+            ),
+            newTask,
+          ],
+        };
+      }
+
+      if (action.status === "Done") {
+        return {
+          ...state,
+          doneData: [
+            ...state.doneData.filter((item) => item.number !== action.number),
+            newTask,
+          ],
+        };
+      }
     }
 
     case "MOVE_TASK": {
-      return {
-        ...state,
-        currentTask: {
-          number: action.number,
-          name: action.name,
-          description: action.description,
-          finishDate: action.finishDate,
-          comment: action.comment,
-          date: action.date,
-          priority: action.priority,
-          status: action.status,
-          day: action.day,
-          month: action.month,
-          year: action.year,
-        },
-      };
+      console.log();
+      if (action.name === "Development") {
+        let itemToMove;
+        const itemFromQueue = state.queueData.filter(
+          (item) => item.number === action.number.number
+        );
+
+        const itemFromDone = state.doneData.filter(
+          (item) => item.number === action.number.number
+        );
+
+        if (itemFromQueue.length > 0) {
+          itemToMove = itemFromQueue;
+          return {
+            ...state,
+            queueData: [
+              ...state.queueData.filter(
+                (item) => item.number !== action.number.number
+              ),
+            ],
+            developmentData: [...state.developmentData, itemToMove[0]],
+          };
+        } else if (itemFromDone.length > 0) {
+          itemToMove = itemFromDone;
+          return {
+            ...state,
+            doneData: [
+              ...state.doneData.filter(
+                (item) => item.number !== action.number.number
+              ),
+            ],
+            developmentData: [...state.developmentData, itemToMove[0]],
+          };
+        } else {
+          return {
+            ...state,
+          };
+        }
+      }
+
+      if (action.name === "Queue") {
+        let itemToMove;
+        const itemFromDev = state.developmentData.filter(
+          (item) => item.number === action.number.number
+        );
+
+        const itemFromDone = state.doneData.filter(
+          (item) => item.number === action.number.number
+        );
+
+        if (itemFromDev.length > 0) {
+          itemToMove = itemFromDev;
+          return {
+            ...state,
+            developmentData: [
+              ...state.developmentData.filter(
+                (item) => item.number !== action.number.number
+              ),
+            ],
+            queueData: [...state.queueData, itemToMove[0]],
+          };
+        } else if (itemFromDone.length > 0) {
+          itemToMove = itemFromDone;
+          return {
+            ...state,
+            doneData: [
+              ...state.doneData.filter(
+                (item) => item.number !== action.number.number
+              ),
+            ],
+            queueData: [...state.queueData, itemToMove[0]],
+          };
+        } else {
+          return {
+            ...state,
+          };
+        }
+      }
+
+      if (action.name === "Done") {
+        let itemToMove;
+        const itemFromDev = state.developmentData.filter(
+          (item) => item.number === action.number.number
+        );
+
+        const itemFromQueue = state.queueData.filter(
+          (item) => item.number === action.number.number
+        );
+
+        if (itemFromDev.length > 0) {
+          itemToMove = itemFromDev;
+          return {
+            ...state,
+            developmentData: [
+              ...state.developmentData.filter(
+                (item) => item.number !== action.number.number
+              ),
+            ],
+            doneData: [...state.doneData, itemToMove[0]],
+          };
+        } else if (itemFromQueue.length > 0) {
+          itemToMove = itemFromQueue;
+          return {
+            ...state,
+            queueData: [
+              ...state.queueData.filter(
+                (item) => item.number !== action.number.number
+              ),
+            ],
+            doneData: [...state.doneData, itemToMove[0]],
+          };
+        } else {
+          return {
+            ...state,
+          };
+        }
+      }
     }
 
     default:

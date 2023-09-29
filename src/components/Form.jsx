@@ -17,7 +17,9 @@ const Form = ({ active, closeModal }) => {
   }, [active]);
 
   const dispatch = useDispatch();
-  const { queueData } = useSelector((state) => state.dataReducer);
+  const { queueData, developmentData, doneData } = useSelector(
+    (state) => state.dataReducer
+  );
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -33,7 +35,8 @@ const Form = ({ active, closeModal }) => {
   return (
     <form className={styles.form}>
       <span className={styles.form__taskNumber}>
-        Task number {queueData.length + 1}
+        Task number{" "}
+        {queueData.length + 1 + developmentData.length + doneData.length}
       </span>
       <div className={styles.form__listContainer}>
         <div className={styles.form__list}>

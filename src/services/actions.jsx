@@ -79,11 +79,12 @@ export function editTask(
   };
 }
 
-export function moveTask(number) {
+export function moveTask(number, name) {
   return function (dispatch) {
     dispatch({
       type: "MOVE_TASK",
-      number,
+      number: number,
+      name: name,
     });
   };
 }

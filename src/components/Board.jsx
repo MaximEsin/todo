@@ -8,6 +8,7 @@ const Board = ({ setActive, setTaskActive }) => {
   const { queueData, developmentData, doneData } = useSelector(
     (state) => state.dataReducer
   );
+
   return (
     <section className={styles.board}>
       <Table

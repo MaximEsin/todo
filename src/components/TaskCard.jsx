@@ -9,8 +9,6 @@ import { editTask } from "../services/actions";
 const TaskCard = ({ currentTask, active, closeModal }) => {
   const dispatch = useDispatch();
 
-  console.log(currentTask);
-
   const closeModalSendData = () => {
     dispatch(
       editTask(

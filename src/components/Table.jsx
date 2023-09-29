@@ -2,12 +2,16 @@ import React from "react";
 import styles from "../styles/Table.module.scss";
 import Task from "./Task";
 import { useDrop } from "react-dnd";
+import { useDispatch } from "react-redux";
+import { moveTask } from "../services/actions.jsx";
 
 const Table = ({ name, children, tasks, setTaskActive }) => {
+  const dispatch = useDispatch();
+
   const [, drop] = useDrop({
-    accept: 'task',
+    accept: "task",
     drop(number) {
-      dispatch(AddItem(itemId));
+      dispatch(moveTask(number, name));
     },
   });
 

@@ -7,6 +7,7 @@ import { useDrag } from "react-dnd";
 const Task = ({ data, setTaskActive, status }) => {
   const dispatch = useDispatch();
   const number = data.number;
+
   const [, dragRef] = useDrag({
     type: "task",
     item: { number },
