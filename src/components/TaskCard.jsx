@@ -6,10 +6,29 @@ import Button from "../UI/button/Button";
 import { useDispatch } from "react-redux";
 import { editTask } from "../services/actions";
 
-const TaskCard = ({ currentTask, active }) => {
+const TaskCard = ({ currentTask, active, closeModal }) => {
   const dispatch = useDispatch();
 
   console.log(currentTask);
+
+  const closeModalSendData = () => {
+    dispatch(
+      editTask(
+        currentTask.number,
+        name,
+        description,
+        finishDate,
+        currentTask.comments,
+        currentTask.date,
+        priority,
+        currentTask.status,
+        currentTask.day,
+        currentTask.month,
+        currentTask.year
+      )
+    );
+    closeModal();
+  };
 
   useEffect(() => {
     setName(currentTask.name);
@@ -134,26 +153,7 @@ const TaskCard = ({ currentTask, active }) => {
           </div>
         </div>
       </div>
-      <Button
-        text="Edit task"
-        setActive={() =>
-          dispatch(
-            editTask(
-              currentTask.number,
-              name,
-              description,
-              finishDate,
-              currentTask.comments,
-              currentTask.date,
-              priority,
-              currentTask.status,
-              currentTask.day,
-              currentTask.month,
-              currentTask.year
-            )
-          )
-        }
-      />
+      <Button text="Edit task" setActive={() => closeModalSendData()} />
     </section>
   );
 };

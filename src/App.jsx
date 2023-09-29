@@ -38,7 +38,11 @@ function App() {
         />
       </Modal>
       <Modal active={modalTaskActive} closeModal={closeModal}>
-        <TaskCard currentTask={currentTask} active={modalTaskActive} />
+        <TaskCard
+          currentTask={currentTask}
+          active={modalTaskActive}
+          closeModal={closeModal}
+        />
       </Modal>
     </div>
   );
