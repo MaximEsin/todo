@@ -30,8 +30,6 @@ const TaskCard = ({ currentTask, active, closeModal }) => {
     closeModal();
   };
 
-  console.log([currentTask.comments]);
-
   useEffect(() => {
     setName(currentTask.name);
     setDescription(currentTask.description);

@@ -12,9 +12,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 function App() {
   const [modalFormActive, setModalFormActive] = useState(false);
   const [modalTaskActive, setModalTaskActive] = useState(false);
-  const { currentTask, queueData, developmentData, doneData } = useSelector(
-    (state) => state.dataReducer
-  );
+  const { currentTask } = useSelector((state) => state.dataReducer);
 
   const closeModal = () => {
     setModalFormActive(false);
