@@ -3,10 +3,11 @@
 #Description
 
 In this app a user can write ToDo things and they will be stored in LocalStorage and appear in his list.
+
 #Functionality
 
-User can store ToDos
-User can move tasks between columns
+User can store ToDos.
+User can move tasks between columns.
 User can remove ToDo from his list.
 
 #Stack
